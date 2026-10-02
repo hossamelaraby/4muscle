@@ -14,7 +14,7 @@ export default function Comparison() {
     },
     {
       feature: "وضوح الجرعة والمعايرة",
-      fourMuscle: "دقة متناهية: 1 قطرة = 1 ملعقة سكر",
+      fourMuscle: "دقة متناهية: 1 نقطة = 1 معلقة سكر",
       others: "صعوبة ضبط نصف ملعقة أو ربع ملعقة",
       advantage: true,
     },

@@ -74,6 +74,26 @@ export default function AdminLayout({
               </Link>
 
               <Link
+                href="/admin/settings"
+                className={`text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors ${
+                  pathname === "/admin/settings" ? "text-brand-green" : "text-gray-300 hover:text-white"
+                }`}
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>الباقات والأسعار</span>
+              </Link>
+
+              <Link
+                href="/admin/coupons"
+                className={`text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-colors ${
+                  pathname === "/admin/coupons" ? "text-brand-green" : "text-gray-300 hover:text-white"
+                }`}
+              >
+                <ShieldCheck className="w-4 h-4" />
+                <span>أكواد الخصم</span>
+              </Link>
+
+              <Link
                 href="/"
                 target="_blank"
                 className="text-xs text-gray-400 hover:text-white flex items-center gap-1 transition-colors"

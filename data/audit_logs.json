@@ -1,0 +1,38 @@
+[
+  {
+    "order_id": "ORD-1790919850225",
+    "action": "status_change",
+    "from_status": "new",
+    "to_status": "preparing",
+    "reason": "تم تأكيد الطلب مع العميل والتجهيز للشحن",
+    "operator": "مسؤول المتجر",
+    "id": "log-1790919901299-336",
+    "created_at": "2026-10-02T05:45:01.299Z"
+  },
+  {
+    "order_id": "ORD-1790919850225",
+    "action": "order_created",
+    "operator": "العميل عبر الموقع",
+    "details": "تم إنشاء الطلب بقيمة 660 ج.م",
+    "id": "log-1790919850227-31",
+    "created_at": "2026-10-02T05:44:10.227Z"
+  },
+  {
+    "id": "log-1",
+    "order_id": "ORD-1001",
+    "action": "order_created",
+    "operator": "العميل عبر الموقع",
+    "details": "تم تسجيل الطلب من الموقع",
+    "created_at": "2026-10-02T01:42:41.179Z"
+  },
+  {
+    "id": "log-2",
+    "order_id": "ORD-1002",
+    "action": "status_change",
+    "from_status": "new",
+    "to_status": "preparing",
+    "reason": "بدء تجهيز الشحنة والتغليف",
+    "operator": "مدير المتجر",
+    "created_at": "2026-10-01T17:42:41.179Z"
+  }
+]

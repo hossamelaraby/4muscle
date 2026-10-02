@@ -1,0 +1,89 @@
+[
+  {
+    "customer_name": "محمود إبراهيم",
+    "phone": "01011122233",
+    "governorate": "القاهرة",
+    "city": "المعادي",
+    "address": "شارع النصر عمارة 15 الدور الرابع",
+    "items": [
+      {
+        "id": "bundle-3",
+        "name": "ثلاث قطع (4 Muscle Drops)",
+        "quantity": 1,
+        "bottlesCount": 3,
+        "unitPrice": 660,
+        "totalPrice": 660
+      }
+    ],
+    "subtotal": 660,
+    "shipping_fee": 0,
+    "discount": 0,
+    "total": 660,
+    "payment_method": "cod",
+    "payment_status": "pending",
+    "status": "preparing",
+    "id": "ORD-1790919850225",
+    "order_number": "4M-2026-1003",
+    "created_at": "2026-10-02T05:44:10.225Z",
+    "updated_at": "2026-10-02T05:45:01.298Z"
+  },
+  {
+    "id": "ORD-1001",
+    "order_number": "4M-2026-1001",
+    "customer_name": "أحمد محمود سالم",
+    "phone": "01012345678",
+    "governorate": "القاهرة",
+    "city": "المعادي",
+    "address": "شارع 9، عمارة 42، الدور 3، شقة 6",
+    "notes": "برجاء الاتصال قبل الوصول",
+    "items": [
+      {
+        "id": "bundle-3",
+        "name": "باقة 3 عبوات (4 Muscle Drops)",
+        "quantity": 1,
+        "bottlesCount": 3,
+        "unitPrice": 660,
+        "totalPrice": 660,
+        "badge": "الأكثر مبيعاً"
+      }
+    ],
+    "subtotal": 660,
+    "shipping_fee": 0,
+    "discount": 0,
+    "total": 660,
+    "payment_method": "cod",
+    "payment_status": "pending",
+    "status": "new",
+    "created_at": "2026-10-02T01:42:41.179Z",
+    "updated_at": "2026-10-02T01:42:41.179Z"
+  },
+  {
+    "id": "ORD-1002",
+    "order_number": "4M-2026-1002",
+    "customer_name": "مريم عبد الرحمن",
+    "phone": "01198765432",
+    "governorate": "الإسكندرية",
+    "city": "سموحة",
+    "address": "شارع ألبرت الأول، برج النور، الدور 5",
+    "items": [
+      {
+        "id": "bundle-6",
+        "name": "باقة 6 عبوات + عبوة مجانية",
+        "quantity": 1,
+        "bottlesCount": 7,
+        "unitPrice": 1320,
+        "totalPrice": 1320,
+        "badge": "أفضل قيمة"
+      }
+    ],
+    "subtotal": 1320,
+    "shipping_fee": 0,
+    "discount": 0,
+    "total": 1320,
+    "payment_method": "cod",
+    "payment_status": "pending",
+    "status": "preparing",
+    "created_at": "2026-10-01T05:42:41.179Z",
+    "updated_at": "2026-10-01T17:42:41.179Z"
+  }
+]

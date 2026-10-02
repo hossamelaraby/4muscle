@@ -28,8 +28,11 @@ export default function Hero() {
           
           {/* Eyebrow Badge */}
           <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md border border-brand-green/30 text-brand-green-dark px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-xs">
-            <Sparkles className="w-4 h-4 text-brand-green" />
-            <span>4 Muscle — البديل الطبيعي والصحي للسكر العادي</span>
+            <Sparkles className="w-4 h-4 text-brand-green shrink-0" />
+            <span className="flex items-center gap-1.5">
+              <span dir="ltr" className="inline-block font-sans font-bold">4 Muscle</span>
+              <span>— البديل الطبيعي والصحي للسكر العادي</span>
+            </span>
           </div>
 
           {/* Main Headline */}
@@ -38,8 +41,12 @@ export default function Hero() {
           </h1>
 
           {/* Subtitle */}
-          <p className="text-lg sm:text-2xl font-bold text-brand-green-dark">
-            {BRAND.copy.heroSubtitle}
+          <p className="text-lg sm:text-2xl font-bold text-brand-green-dark flex flex-wrap items-center gap-2">
+            <span dir="ltr" className="inline-block font-sans font-black text-ink">
+              4 Muscle Drops
+            </span>
+            <span className="text-muted-ink font-normal">—</span>
+            <span>400 نقطة في عبوة صغيرة تناسب يومك</span>
           </p>
 
           {/* Supporting paragraph */}
@@ -51,7 +58,11 @@ export default function Hero() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
             <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md p-3 rounded-2xl border border-line shadow-xs">
               <Droplets className="w-5 h-5 text-brand-green shrink-0" />
-              <span className="text-xs sm:text-sm font-bold text-ink">1 قطرة = 1 ملعقة سكر</span>
+              <span className="text-xs sm:text-sm font-bold text-ink flex items-center gap-1.5 font-arabic">
+                <span className="font-bold">1 نقطة</span>
+                <span className="text-muted-ink">=</span>
+                <span className="font-bold">1 معلقة سكر</span>
+              </span>
             </div>
             <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md p-3 rounded-2xl border border-line shadow-xs">
               <CheckCircle2 className="w-5 h-5 text-brand-green shrink-0" />
@@ -65,12 +76,12 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
-            <Link
-              href="/products/4-muscle"
+            <a
+              href="#shop"
               className="inline-flex items-center justify-center bg-brand-green hover:bg-brand-green-dark text-white font-extrabold text-base px-8 py-4 rounded-2xl shadow-lg shadow-brand-green/25 hover:shadow-xl transition-all duration-200 active:scale-95 text-center"
             >
               {BRAND.copy.primaryCta} — وفر حتى 25%
-            </Link>
+            </a>
             <a
               href="#use-cases"
               className="inline-flex items-center justify-center border-2 border-ink/20 hover:border-brand-green bg-white/90 backdrop-blur-md hover:bg-white text-ink font-bold text-base px-7 py-3.5 rounded-2xl transition-all duration-200 text-center gap-2 shadow-xs"

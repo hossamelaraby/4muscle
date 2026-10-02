@@ -19,11 +19,28 @@ import {
 export default function ProductShowcase() {
   const router = useRouter();
   const { addItem } = useCart();
+  const [bundles, setBundles] = useState<BundleItem[]>(BRAND.bundles);
   const [selectedBundleId, setSelectedBundleId] = useState<string>("bundle-3");
   const [quantity, setQuantity] = useState<number>(1);
 
+  // Load dynamically configured bundles and prices if changed by admin
+  React.useEffect(() => {
+    async function loadSettings() {
+      try {
+        const res = await fetch("/api/admin/settings");
+        const data = await res.json();
+        if (data.success && data.settings && Array.isArray(data.settings.bundles) && data.settings.bundles.length > 0) {
+          setBundles(data.settings.bundles);
+        }
+      } catch (err) {
+        // Fallback to static BRAND.bundles
+      }
+    }
+    loadSettings();
+  }, []);
+
   const selectedBundle: BundleItem =
-    BRAND.bundles.find((b) => b.id === selectedBundleId) || BRAND.bundles[1];
+    bundles.find((b) => b.id === selectedBundleId) || bundles[0] || BRAND.bundles[1];
 
   const handleAddToCart = () => {
     addItem({
@@ -33,11 +50,18 @@ export default function ProductShowcase() {
       bottlesCount: selectedBundle.bottles,
       unitPrice: selectedBundle.price,
       badge: selectedBundle.badge,
-    });
+    }, true);
   };
 
   const handleBuyNow = () => {
-    handleAddToCart();
+    addItem({
+      id: selectedBundle.id,
+      name: `${selectedBundle.title} (${BRAND.productShortName})`,
+      quantity: quantity,
+      bottlesCount: selectedBundle.bottles,
+      unitPrice: selectedBundle.price,
+      badge: selectedBundle.badge,
+    }, false);
     router.push("/checkout");
   };
 
@@ -108,7 +132,7 @@ export default function ProductShowcase() {
 
             {/* Bundle Options List */}
             <div className="space-y-2.5">
-              {BRAND.bundles.map((bundle) => {
+              {bundles.map((bundle) => {
                 const isSelected = selectedBundleId === bundle.id;
 
                 return (

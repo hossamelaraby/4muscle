@@ -9,10 +9,11 @@ interface CartContextType {
   isOpen: boolean;
   openCart: () => void;
   closeCart: () => void;
-  addItem: (item: Omit<OrderItem, "totalPrice">) => void;
+  addItem: (item: Omit<OrderItem, "totalPrice">, openDrawer?: boolean) => void;
   updateQuantity: (id: string, delta: number) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
+  isLoaded: boolean;
   totalItems: number;
   totalBottles: number;
   subtotal: number;
@@ -29,6 +30,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<OrderItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [couponDiscount, setCouponDiscount] = useState(0);
 
@@ -41,35 +43,38 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       }
     } catch {
       // ignore
+    } finally {
+      setIsLoaded(true);
     }
   }, []);
 
   // Save to localStorage
   useEffect(() => {
+    if (!isLoaded) return;
     try {
       localStorage.setItem("4muscle_cart", JSON.stringify(items));
     } catch {
       // ignore
     }
-  }, [items]);
+  }, [items, isLoaded]);
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
 
-  const addItem = (item: Omit<OrderItem, "totalPrice">) => {
+  const addItem = (item: Omit<OrderItem, "totalPrice">, openDrawer: boolean = true) => {
     setItems((prev) => {
       const existingIndex = prev.findIndex((i) => i.id === item.id);
+      let updated: OrderItem[];
       if (existingIndex > -1) {
-        const next = [...prev];
-        const updatedQty = next[existingIndex].quantity + item.quantity;
-        next[existingIndex] = {
-          ...next[existingIndex],
+        updated = [...prev];
+        const updatedQty = updated[existingIndex].quantity + item.quantity;
+        updated[existingIndex] = {
+          ...updated[existingIndex],
           quantity: updatedQty,
-          totalPrice: updatedQty * next[existingIndex].unitPrice,
+          totalPrice: updatedQty * updated[existingIndex].unitPrice,
         };
-        return next;
       } else {
-        return [
+        updated = [
           ...prev,
           {
             ...item,
@@ -77,8 +82,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           },
         ];
       }
+      // Immediately persist to localStorage for instant synchronous checkout navigation
+      try {
+        localStorage.setItem("4muscle_cart", JSON.stringify(updated));
+      } catch {}
+      return updated;
     });
-    setIsOpen(true);
+
+    if (openDrawer) {
+      setIsOpen(true);
+    }
   };
 
   const updateQuantity = (id: string, delta: number) => {
@@ -170,6 +183,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         updateQuantity,
         removeItem,
         clearCart,
+        isLoaded,
         totalItems,
         totalBottles,
         subtotal,

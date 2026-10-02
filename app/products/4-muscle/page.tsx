@@ -50,19 +50,23 @@ export default function ProductDetailPage() {
               <ul className="space-y-3 text-sm text-muted-ink">
                 <li className="flex justify-between border-b border-line/50 pb-2">
                   <span>اسم المنتج</span>
-                  <span className="font-bold text-ink font-sans">4 Muscle Healthy Sugar Drops</span>
+                  <span className="font-bold text-ink font-sans">4 Muscle Drops</span>
                 </li>
                 <li className="flex justify-between border-b border-line/50 pb-2">
                   <span>الحجم الصافي</span>
-                  <span className="font-bold text-ink font-sans">20 ml</span>
+                  <span className="font-bold text-ink font-sans">20 ml (أكبر حجم عبوة داخل السوق)</span>
                 </li>
                 <li className="flex justify-between border-b border-line/50 pb-2">
                   <span>عدد نقاط التحلية</span>
-                  <span className="font-bold text-ink">400 نقطة تحلية مركزة</span>
+                  <span className="font-bold text-ink">400 نقطة (400 ملعقة سكر)</span>
                 </li>
                 <li className="flex justify-between border-b border-line/50 pb-2">
                   <span>معادلة الجرعة</span>
-                  <span className="font-bold text-ink">1 قطرة = 1 ملعقة سكر</span>
+                  <span className="font-bold text-ink">1 نقطة = 1 معلقة سكر</span>
+                </li>
+                <li className="flex justify-between border-b border-line/50 pb-2">
+                  <span>مدة الصلاحية</span>
+                  <span className="font-bold text-ink">سنتان من تاريخ الإنتاج</span>
                 </li>
                 <li className="flex justify-between">
                   <span>بلد المنشأ</span>
@@ -76,16 +80,16 @@ export default function ProductDetailPage() {
                 <Droplet className="w-6 h-6 text-brand-green" />
                 <h3 className="text-lg font-bold text-ink">المكونات وطريقة الحفظ</h3>
               </div>
-              <p className="text-sm text-muted-ink leading-relaxed">
-                مستخلص محلي سائل فائق النقاء مشتق من سكر القصب الطبيعي وجزر السكر عالي الجودة ومياه نقية معالجة ومواد حافظة غذائية مصرح بها بنسب قياسية.
+              <p className="text-sm text-ink/90 font-medium leading-relaxed bg-sage-wash/40 p-3.5 rounded-xl border border-brand-green/20">
+                مستخرج من السكرالوز المصرح من وزارة الصحة وآمن لمرضى السكر والضغط والأطفال، بدون أي سعرات حرارية وبدون أي طعم مر نهائياً.
               </p>
-              <div className="bg-sage-wash/60 p-4 rounded-xl border border-brand-green/20 space-y-2">
+              <div className="bg-cream-soft p-4 rounded-xl border border-line space-y-2">
                 <h4 className="text-xs font-bold text-ink flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-brand-green" />
                   <span>إرشادات التخزين والاستخدام</span>
                 </h4>
                 <p className="text-xs text-muted-ink leading-relaxed">
-                  يحفظ في مكان جاف ومعتدل الحرارة بعيداً عن أشعة الشمس المباشرة. رج العبوة برفق قبل الاستخدام. لا تعرض العبوة للتجميد.
+                  يحفظ في مكان جاف ومعتدل الحرارة بعيداً عن أشعة الشمس المباشرة. رج العبوة برفق قبل الاستخدام. لا تعرض العبوة للتجميد. صلاحية المنتج سنتان.
                 </p>
               </div>
             </div>

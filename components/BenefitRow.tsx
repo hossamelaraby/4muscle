@@ -14,8 +14,8 @@ export default function BenefitRow() {
     {
       icon: CheckCircle,
       title: "جرعة واضحة",
-      desc: "قطرة واحدة فقط تعادل ملعقة سكر كاملة، لسهولة ضبط تحلية كوبك المفضل.",
-      highlight: "1 قطرة = 1 ملعقة",
+      desc: "نقطة واحدة فقط تعادل معلقة سكر كاملة، لسهولة ضبط تحلية كوبك المفضل بدقة.",
+      highlight: "1 نقطة = 1 معلقة سكر",
     },
     {
       icon: Activity,

@@ -55,9 +55,9 @@ const config: Config = {
         },
       },
       animation: {
-        marquee: "marquee 25s linear infinite",
-        "marquee-rtl": "marqueeRtl 25s linear infinite",
-        "marquee-infinite": "marqueeLeft 45s linear infinite",
+        marquee: "marquee 15s linear infinite",
+        "marquee-rtl": "marqueeRtl 12s linear infinite",
+        "marquee-infinite": "marqueeLeft 25s linear infinite",
       },
     },
   },

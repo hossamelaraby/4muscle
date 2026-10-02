@@ -21,10 +21,13 @@ export default function CheckoutPage() {
   const {
     items,
     clearCart,
+    isLoaded,
     subtotal,
     totalBottles,
     appliedCoupon,
     discount,
+    applyCoupon,
+    removeCoupon,
   } = useCart();
 
   const [fullName, setFullName] = useState("");
@@ -34,6 +37,12 @@ export default function CheckoutPage() {
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
   const [notes, setNotes] = useState("");
+
+  // Coupon code box state
+  const [couponCodeInput, setCouponCodeInput] = useState("");
+  const [couponError, setCouponError] = useState("");
+  const [couponSuccess, setCouponSuccess] = useState("");
+  const [isApplyingCoupon, setIsApplyingCoupon] = useState(false);
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,7 +60,17 @@ export default function CheckoutPage() {
 
   const total = Math.max(0, subtotal + shippingFee - discount);
 
-  // If cart is empty, redirect or prompt
+  // If cart is still hydrating from localStorage, show quick skeleton
+  if (!isLoaded) {
+    return (
+      <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
+        <div className="w-10 h-10 border-4 border-brand-green border-t-transparent rounded-full animate-spin mb-4" />
+        <p className="text-sm font-semibold text-ink">جاري تجهيز بيانات الطلب...</p>
+      </div>
+    );
+  }
+
+  // If cart is empty after hydration, redirect or prompt
   if (items.length === 0) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center">
@@ -60,7 +79,7 @@ export default function CheckoutPage() {
           يرجى إضافة باقة 4 Muscle أولاً للمتابعة إلى إتمام الطلب.
         </p>
         <Link
-          href="/products/4-muscle"
+          href="/#shop"
           className="bg-brand-green text-white font-bold px-6 py-3 rounded-xl hover:bg-brand-green-dark transition-colors"
         >
           اختيار باقة
@@ -385,16 +404,82 @@ export default function CheckoutPage() {
                 ))}
               </div>
 
-              {/* Coupon applied badge if any */}
-              {appliedCoupon && (
-                <div className="p-2.5 bg-emerald-50 rounded-xl border border-emerald-200 flex justify-between text-xs text-emerald-800 font-bold">
-                  <span className="flex items-center gap-1">
-                    <Tag className="w-3.5 h-3.5" />
-                    كود الخصم: {appliedCoupon}
-                  </span>
-                  <span>-{discount} {BRAND.currency}</span>
-                </div>
-              )}
+              {/* Interactive Coupon Code Form */}
+              <div className="pt-2 border-t border-line/60">
+                {appliedCoupon ? (
+                  <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 flex items-center justify-between text-xs">
+                    <div className="flex items-center gap-1.5 text-emerald-800 font-bold">
+                      <Tag className="w-4 h-4 text-emerald-600" />
+                      <span>تم تطبيق كود: <span className="font-mono">{appliedCoupon}</span></span>
+                      <span className="text-emerald-700 font-sans">(-{discount} {BRAND.currency})</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        removeCoupon();
+                        setCouponSuccess("");
+                        setCouponError("");
+                      }}
+                      className="text-[11px] font-bold text-rose-600 hover:text-rose-800 underline transition-colors"
+                    >
+                      إلغاء الكود
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2">
+                      <div className="relative flex-1">
+                        <input
+                          type="text"
+                          value={couponCodeInput}
+                          onChange={(e) => {
+                            setCouponCodeInput(e.target.value.toUpperCase());
+                            setCouponError("");
+                            setCouponSuccess("");
+                          }}
+                          placeholder="لديك كود خصم؟ اكتبه هنا..."
+                          className="w-full text-xs font-semibold px-3 py-2.5 rounded-xl border border-line focus:border-brand-green focus:outline-none uppercase placeholder:normal-case font-mono"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        disabled={isApplyingCoupon || !couponCodeInput.trim()}
+                        onClick={async () => {
+                          if (!couponCodeInput.trim()) return;
+                          setIsApplyingCoupon(true);
+                          setCouponError("");
+                          setCouponSuccess("");
+                          const res = await applyCoupon(couponCodeInput.trim());
+                          setIsApplyingCoupon(false);
+                          if (res.success) {
+                            setCouponSuccess(res.message);
+                            setCouponCodeInput("");
+                          } else {
+                            setCouponError(res.message);
+                          }
+                        }}
+                        className="bg-ink hover:bg-brand-green text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-colors disabled:opacity-50 shrink-0"
+                      >
+                        {isApplyingCoupon ? "جاري الفحص..." : "تطبيق الخصم"}
+                      </button>
+                    </div>
+
+                    {couponError && (
+                      <p className="text-[11px] font-bold text-rose-600 flex items-center gap-1">
+                        <AlertCircle className="w-3.5 h-3.5" />
+                        <span>{couponError}</span>
+                      </p>
+                    )}
+
+                    {couponSuccess && (
+                      <p className="text-[11px] font-bold text-emerald-700 flex items-center gap-1">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>{couponSuccess}</span>
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
 
               {/* Pricing breakdown */}
               <div className="space-y-2.5 text-xs sm:text-sm text-muted-ink border-t border-line pt-4">

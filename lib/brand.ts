@@ -27,10 +27,11 @@ export interface BundleItem {
 
 export const BRAND = {
   name: "4 Muscle",
-  productName: "4 Muscle Healthy Sugar Drops",
+  productName: "4 Muscle Drops",
   productShortName: "4 Muscle Drops",
   pointValue: "400 نقطة",
   volume: "20 ml",
+  shelfLife: "سنتان من تاريخ الإنتاج",
   locale: "ar-EG",
   direction: "rtl",
 
@@ -59,16 +60,17 @@ export const BRAND = {
 
   // Ticker Announcements
   announcements: [
-    "شحن مجاني عند شراء 3 عبوات أو أكثر — لجميع محافظات مصر",
-    "عروض الباقات متاحة لفترة محدودة — وفر حتى 25%",
-    "اطلب الآن واستمتع بتجربة تسوق سهلة والدفع عند الاستلام",
-    "400 نقطة من الحلاوة الصافية في عبوة عملية 20 مل",
+    "استخدم كود أحد شركاءنا واحصل على 15% خصم",
+    "أكبر حجم عبوة داخل السوق — 20 مل",
+    "400 ملعقة سكر داخل العبوة (400 نقطة تحلية مركزة)",
+    "البديل الآمن ليك ولعائلتك — مستخرج من السكرالوز المصرح من وزارة الصحة",
+    "شحن مجاني عند شراء 3 عبوات أو أكثر لجميع المحافظات",
   ],
 
   // Approved Copy Direction (as per brand prompt)
   copy: {
     heroTitle: "حلاوة أسهل في كل لحظة",
-    heroSubtitle: "4 Muscle Healthy Sugar Drops — 400 نقطة في عبوة صغيرة تناسب يومك",
+    heroSubtitle: "4 Muscle Drops — 400 نقطة في عبوة صغيرة تناسب يومك",
     supportingLine: "استمتع بمشروباتك وأكلاتك المفضلة بطريقة أبسط، مع جرعة واضحة وتصميم عملي.",
     primaryCta: "اطلب الآن",
     secondaryCta: "اكتشف المنتج",
@@ -144,7 +146,7 @@ export const BRAND = {
     {
       icon: "check-circle",
       title: "جرعة واضحة",
-      description: "قطرة واحدة = ملعقة سكر كاملة، لسهولة ضبط التحلية المناسبة.",
+      description: "نقطة واحدة = معلقة سكر كاملة، لسهولة ضبط التحلية المناسبة.",
     },
     {
       icon: "activity",
@@ -266,7 +268,11 @@ export const BRAND = {
     },
     {
       question: "ما المكونات وطبيعة التحلية؟",
-      answer: "مستخلص محلي سائل فائق النقاء مصنوع من مشتقات السكر مع جزر السكر عالي الجودة ليعطيك حلاوة السكر الطبيعي دون أي طعم مر بعد التذوق (No Aftertaste).",
+      answer: "مستخرج من السكرالوز المصرح من وزارة الصحة، آمن لمرضى السكر والضغط والأطفال، بصفر سعرات وبدون أي طعم مر نهائياً (No Aftertaste).",
+    },
+    {
+      question: "ما هي مدة صلاحية المنتج؟",
+      answer: "صلاحية عبوة 4 Muscle Drops سنتان (24 شهراً) من تاريخ الإنتاج المدون على العبوة.",
     },
     {
       question: "ما مدة الشحن والاستبدال؟",

@@ -64,9 +64,33 @@ export interface AuditLog {
 }
 
 export interface Coupon {
+  id?: string;
   code: string;
   discount_type: "percentage" | "fixed";
   discount_value: number;
   min_order_value: number;
   is_active: boolean;
+  times_used?: number;
+}
+
+export interface StoreSettings {
+  id: string;
+  product_price: number;
+  compare_at_price: number;
+  partner_discount_percent: number;
+  free_shipping_threshold: number;
+  standard_shipping_fee: number;
+  bundles: Array<{
+    id: string;
+    bottles: number;
+    title: string;
+    subtitle: string;
+    price: number;
+    compareAtPrice: number;
+    freeShipping: boolean;
+    extraGift?: string;
+    isPopular?: boolean;
+    badge?: string;
+  }>;
+  updated_at?: string;
 }

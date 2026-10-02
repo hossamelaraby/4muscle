@@ -50,11 +50,11 @@ export const BRAND = {
   freeShippingThresholdBottles: 3,
 
   // Social & Contacts
-  whatsappNumber: "201000000000",
-  whatsappUrl: "https://wa.me/201000000000",
+  whatsappNumber: "201112677930",
+  whatsappUrl: "https://wa.me/201112677930",
   instagramUrl: "https://instagram.com/4muscle",
   tiktokUrl: "https://tiktok.com/@4muscle",
-  phone: "+20 10 0000 0000",
+  phone: "+20 11 1267 7930",
   email: "support@4muscle.com",
 
   // Ticker Announcements

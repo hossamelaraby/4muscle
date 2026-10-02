@@ -1,0 +1,14 @@
+{
+  "routes": [
+    { "path": "/", "title": "4 Muscle — الرئيسية" },
+    { "path": "/products/4-muscle", "title": "4 Muscle — المنتج" },
+    { "path": "/cart", "title": "عربة التسوق" },
+    { "path": "/checkout", "title": "إتمام الطلب" },
+    { "path": "/order-confirmation", "title": "تأكيد الطلب" },
+    { "path": "/our-story", "title": "قصتنا" },
+    { "path": "/faq", "title": "الأسئلة الشائعة" },
+    { "path": "/contact", "title": "تواصل معنا" },
+    { "path": "/admin", "title": "لوحة التحكم" },
+    { "path": "/admin/orders/:id", "title": "تفاصيل الطلب" }
+  ]
+}

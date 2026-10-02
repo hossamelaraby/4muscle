@@ -30,12 +30,13 @@ export default function OurStoryPage() {
       {/* Main Content */}
       <section className="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div className="relative aspect-square rounded-3xl overflow-hidden border border-line shadow-sm bg-cream-soft">
+          <div className="relative aspect-[3/4] sm:aspect-[4/5] max-h-[550px] rounded-3xl overflow-hidden border border-line shadow-md bg-cream-soft flex items-center justify-center p-3">
             <Image
-              src="/images/product-lifestyle.jpg"
+              src="/images/bottle-400-spoons.jpg"
               alt="4 Muscle Drops - يعادل 400 معلقة سكر"
               fill
-              className="object-cover"
+              className="object-contain"
+              priority
             />
           </div>
           <div className="space-y-4 text-right">

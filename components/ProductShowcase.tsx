@@ -60,16 +60,16 @@ export default function ProductShowcase() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* Official Bundles Banner Graphic (Left in RTL, visual counterpart to the selector) */}
+          {/* Official 3 Bottles with Ribbon Graphic (Uploaded by client) */}
           <div className="lg:col-span-6 space-y-4">
-            <div className="relative rounded-3xl overflow-hidden border border-line shadow-lg bg-cream-soft aspect-[16/10] sm:aspect-[16/9] w-full">
+            <div className="relative rounded-3xl overflow-hidden border border-line shadow-lg bg-cream-soft aspect-[4/5] sm:aspect-[3/4] max-h-[580px] w-full flex items-center justify-center p-2">
               <Image
-                src="/images/bundles-banner.jpg"
-                alt="عروض وباقات 4 Muscle - أشتري أكثر ووفر أكثر"
+                src="/images/bundle-bottles-ribbon.jpg"
+                alt="باقات وعروض 4 Muscle Drops - 3 عبوات وشحن مجاني"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
+                className="object-contain"
               />
             </div>
 

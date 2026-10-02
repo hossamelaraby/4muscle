@@ -32,8 +32,8 @@ export default function OurStoryPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           <div className="relative aspect-square rounded-3xl overflow-hidden border border-line shadow-sm bg-cream-soft">
             <Image
-              src={BRAND.heroImage}
-              alt="قصة 4 Muscle"
+              src="/images/product-lifestyle.jpg"
+              alt="4 Muscle Drops - يعادل 400 معلقة سكر"
               fill
               className="object-cover"
             />

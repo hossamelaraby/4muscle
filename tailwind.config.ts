@@ -45,6 +45,10 @@ const config: Config = {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        marqueeLeft: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
         marqueeRtl: {
           "0%": { transform: "translateX(0%)" },
           "100%": { transform: "translateX(50%)" },
@@ -53,6 +57,7 @@ const config: Config = {
       animation: {
         marquee: "marquee 25s linear infinite",
         "marquee-rtl": "marqueeRtl 25s linear infinite",
+        "marquee-infinite": "marqueeLeft 45s linear infinite",
       },
     },
   },

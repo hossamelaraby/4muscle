@@ -1,180 +1,127 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { BRAND, ReviewItem } from "@/lib/brand";
-import { Star, ChevronRight, ChevronLeft, Eye, X, ShieldCheck, Quote } from "lucide-react";
+import { Sparkles, Eye, X, ChevronRight, ChevronLeft, ShieldCheck } from "lucide-react";
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [selectedReviewImage, setSelectedReviewImage] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const reviews = BRAND.reviews;
-
-  // Auto rotation every 7 seconds
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % reviews.length);
-    }, 7000);
-    return () => clearInterval(timer);
-  }, [isPaused, reviews.length]);
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % reviews.length);
-  };
-
-  const current = reviews[currentIndex];
+  // All 16 authentic customer review screenshots from materials
+  const reviewImages = Array.from({ length: 16 }, (_, i) => `/images/reviews/review-${i + 1}.png`);
 
   return (
     <section
-      className="py-16 sm:py-24 bg-white border-b border-line overflow-hidden"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      aria-roledescription="carousel"
+      id="reviews"
+      className="py-16 sm:py-24 bg-cream-soft/50 border-b border-line overflow-hidden"
       aria-label="آراء وتجارب العملاء"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <span className="text-xs font-bold text-brand-green-dark bg-brand-green/10 px-3.5 py-1 rounded-full uppercase tracking-wider inline-block mb-3">
-            تجارب حقيقية موثقة
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-ink mb-3">
-            {BRAND.copy.reviewsTitle}
-          </h2>
-          <p className="text-base text-muted-ink">
-            تقييمات واقعية من مستخدمي 4 Muscle بعد تجربة قطرات التحلية في روتينهم اليومي.
-          </p>
-        </div>
-
-        {/* Carousel Container */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Main Card */}
-          <div className="bg-gradient-to-b from-cream-soft via-white to-sage-wash/30 rounded-3xl p-8 sm:p-12 border border-line shadow-sm relative min-h-[320px] flex flex-col justify-between">
-            <Quote className="absolute top-6 left-6 w-12 h-12 text-brand-green/15 pointer-events-none" />
-
-            <div>
-              {/* Stars & Badge */}
-              <div className="flex items-center justify-between gap-2 mb-6">
-                <div className="flex items-center gap-1 text-amber-400">
-                  {[...Array(current.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-current" />
-                  ))}
-                </div>
-                {current.badge && (
-                  <span className="text-xs font-bold bg-brand-green/15 text-brand-green-dark px-3 py-1 rounded-full border border-brand-green/20">
-                    {current.badge}
-                  </span>
-                )}
-              </div>
-
-              {/* Quote Arabic Text */}
-              <p className="text-xl sm:text-2xl font-bold text-ink leading-relaxed mb-6">
-                "{current.text}"
-              </p>
-            </div>
-
-            {/* Author info & screenshot button */}
-            <div className="flex items-center justify-between pt-6 border-t border-line/60">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-sage text-brand-green-dark font-black flex items-center justify-center text-sm shadow-xs">
-                  {current.author.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="text-sm font-bold text-ink flex items-center gap-1.5">
-                    <span>{current.author}</span>
-                    <span title="عميل موثق">
-                      <ShieldCheck className="w-4 h-4 text-brand-green" />
-                    </span>
-                  </h4>
-                  <span className="text-xs text-muted-ink">تقييم موثق عبر واتساب / انستغرام</span>
-                </div>
-              </div>
-
-              {/* View Original Screenshot Action */}
-              {current.image && (
-                <button
-                  onClick={() => setSelectedReviewImage(current.image || null)}
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-green-dark hover:text-ink bg-white px-3 py-2 rounded-xl border border-line hover:border-brand-green transition-all shadow-xs"
-                >
-                  <Eye className="w-3.5 h-3.5" />
-                  <span>مشاهدة صورة المحادثة الأصلية</span>
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Navigation Arrows */}
-          <div className="flex items-center justify-between mt-8">
-            <button
-              onClick={handlePrev}
-              className="p-3 rounded-full bg-white border border-line hover:bg-sage-wash text-ink transition-colors shadow-xs"
-              aria-label="التقييم السابق"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex items-center gap-2">
-              {reviews.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`h-2.5 rounded-full transition-all ${
-                    idx === currentIndex
-                      ? "w-8 bg-brand-green"
-                      : "w-2.5 bg-line hover:bg-muted-ink/40"
-                  }`}
-                  aria-label={`الانتقال إلى التقييم ${idx + 1}`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={handleNext}
-              className="p-3 rounded-full bg-white border border-line hover:bg-sage-wash text-ink transition-colors shadow-xs"
-              aria-label="التقييم التالي"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 text-center">
+        <span className="text-xs font-bold text-brand-green-dark bg-brand-green/10 px-3.5 py-1 rounded-full uppercase tracking-wider inline-block mb-3">
+          تجارب حقيقية موثقة بالصور
+        </span>
+        <h2 className="text-3xl sm:text-4xl font-black text-ink mb-3">
+          ماذا يقول عملاؤنا؟
+        </h2>
+        <p className="text-sm sm:text-base text-muted-ink max-w-2xl mx-auto">
+          لقطات حية ومحادثات أصلية من عملائنا على واتساب وانستغرام بعد تجربة قطرات 4 Muscle Drops. (حرّك المؤشر للإيقاف المؤقت أو انقر للتكبير)
+        </p>
       </div>
 
-      {/* Lightbox Modal for Real Review Screenshot */}
-      {selectedReviewImage && (
+      {/* Infinite Seamless Scrolling Track (Marquee Loop) */}
+      <div
+        className="relative w-full overflow-hidden py-4 group"
+        dir="ltr"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Soft edge blur masks */}
+        <div className="absolute inset-y-0 left-0 w-16 sm:w-28 bg-gradient-to-r from-cream-soft to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 sm:w-28 bg-gradient-to-l from-cream-soft to-transparent z-10 pointer-events-none" />
+
         <div
-          className="fixed inset-0 z-50 bg-ink/70 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setSelectedReviewImage(null)}
+          className={`flex gap-5 sm:gap-6 w-max will-change-transform animate-marquee-infinite ${
+            isPaused ? "[animation-play-state:paused]" : ""
+          }`}
+        >
+          {/* Duplicate images array twice to guarantee endless continuous loop without breaks */}
+          {[...reviewImages, ...reviewImages].map((imgSrc, idx) => (
+            <div
+              key={idx}
+              onClick={() => setSelectedImage(imgSrc)}
+              className="relative w-[210px] sm:w-[240px] md:w-[260px] aspect-[9/18] rounded-3xl overflow-hidden border-2 border-line/80 shadow-md hover:shadow-2xl hover:border-brand-green bg-white cursor-pointer transition-all duration-300 hover:scale-[1.03] group/card shrink-0"
+            >
+              <Image
+                src={imgSrc}
+                alt="رأي عميل موثق 4 Muscle"
+                fill
+                sizes="(max-width: 768px) 240px, 260px"
+                className="object-cover"
+                loading="lazy"
+              />
+
+              {/* Hover Overlay with View Icon */}
+              <div className="absolute inset-0 bg-ink/30 opacity-0 group-hover/card:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                <span className="bg-white/95 text-ink font-bold text-xs px-3.5 py-2 rounded-xl shadow-lg flex items-center gap-1.5">
+                  <Eye className="w-4 h-4 text-brand-green" />
+                  <span>تكبير الصورة</span>
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Reassurance Badge below marquee */}
+      <div className="mt-8 text-center">
+        <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-line shadow-xs text-xs font-bold text-ink">
+          <ShieldCheck className="w-4 h-4 text-brand-green" />
+          <span>جميع المحادثات والتقييمات موثقة وحقيقية من عملاء المتجر</span>
+        </div>
+      </div>
+
+      {/* Lightbox Modal for Full View */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-50 bg-ink/80 backdrop-blur-md flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative bg-white rounded-3xl max-w-sm w-full p-4 shadow-2xl border border-line"
+            className="relative bg-white rounded-3xl max-w-sm sm:max-w-md w-full p-4 shadow-2xl border border-line animate-scale"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-3 border-b border-line mb-3">
-              <span className="text-sm font-bold text-ink">محادثة العميل الأصلية الموثقة</span>
+              <span className="text-sm font-bold text-ink flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-brand-green" />
+                <span>رأي العميل الأصلي الموثق</span>
+              </span>
               <button
-                onClick={() => setSelectedReviewImage(null)}
-                className="p-1 text-muted-ink hover:text-ink rounded-lg"
+                onClick={() => setSelectedImage(null)}
+                className="p-1.5 text-muted-ink hover:text-ink hover:bg-slate-100 rounded-xl transition-colors"
+                aria-label="إغلاق"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden bg-black/5">
+
+            <div className="relative aspect-[9/18] w-full rounded-2xl overflow-hidden bg-slate-100 shadow-inner">
               <Image
-                src={selectedReviewImage}
-                alt="تقييم العميل الأصلي"
+                src={selectedImage}
+                alt="تقييم العميل بالحجم الكامل"
                 fill
                 className="object-contain"
+                priority
               />
+            </div>
+
+            <div className="mt-3 text-center">
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="w-full py-2.5 bg-slate-100 hover:bg-slate-200 text-ink text-xs font-bold rounded-xl transition-colors"
+              >
+                إغلاق
+              </button>
             </div>
           </div>
         </div>

@@ -125,9 +125,16 @@ export default function ProductShowcase() {
                 </span>
                 <span className="text-xs text-muted-ink font-semibold">20 مل — 400 نقطة تحلية</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-black text-ink">
-                باقات التوفير والشحن المجاني
-              </h3>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3 className="text-xl sm:text-2xl font-black text-ink">
+                  باقات التوفير والشحن المجاني
+                </h3>
+                {/* Discount Code Highlight Callout */}
+                <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-300/80 text-amber-900 px-3 py-1.5 rounded-full text-xs font-bold shadow-xs animate-bounce-subtle">
+                  <span className="text-sm">🏷️</span>
+                  <span>متنساش تستخدم كود خصم أحد شركائنا واحصل على <strong className="text-brand-green font-black underline">خصم 15%</strong></span>
+                </div>
+              </div>
             </div>
 
             {/* Bundle Options List */}
